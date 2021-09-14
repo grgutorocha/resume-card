@@ -1,46 +1,76 @@
-# Getting Started with Create React App
+# Resume Card
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto foi criado utilizando-se [Create React App](https://github.com/facebook/create-react-app) com template `Typescript` e o gerenciador de pacote `npm`.
 
-## Available Scripts
+## Estrutura de diretórios
 
-In the project directory, you can run:
+```
+|-- public
+|-- src
+    |-- components
+    |-- containers
+    |-- pages
+    |-- routes
+    |-- utils
+```
 
-### `npm start`
+## Como rodar o projeto
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+O projeto utiliza o gerenciador de pacotes `npm` por padrão. Mas, se for de preferência da equipe, pode ser utilizado o `yarn` em ambiente de desenvolvimento.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### `Ambiente de Desenvolvimento`
 
-### `npm test`
+Para subir o servidor e rodar a aplicação em ambiente local, utilize o comando:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    npm start
 
-### `npm run build`
+Uma vez finalizado o comando, é possível visualizar a aplicação acessando no navegador o endereço [http://localhost:3000](http://localhost:3000). Sempre que algum arquivo dentro do diretório `./src` for modificado, automaticamente a aplicação será recarregada. Caso algum arquivo de configuração ou arquivos fora do diretório `./src` sejam modificados, será necessária subir a aplicação novamente.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Para parar a aplicação, aperte juntamente as teclas:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    Ctrl+C ou Command+C
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `Ambiente de Produção`
 
-### `npm run eject`
+Para gerar um pacote da aplicação para produção, utilize o comando:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    npm run build
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Este comando gera uma versão da aplicação otimizada no diretório `build` localizada na raíz do projeto. Este pacote é pronto para utilização em produção.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### `Testes`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Para rodar os testes, utilize o comando:
 
-## Learn More
+    npm run test
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Este comando roda todos os testes presentes na aplicação. Caso deseje rodar os testes de apenas um arquivo, basta adicionar o caminho para o mesmo logo após o comando.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Qualidade de código
+
+O projeto está configurado com as bibliotecas **eslint** (padrão do CRA) e **prettier** (instalado manualmente). Os arquivos de configuração do **prettier** (`.prettierignore`) encontram-se no diretório raíz do projeto e no arquivo **package.json** . No mesmo **package.json**, o **prettier** foi configurado para impedir o build da aplicação quando houver algum código necessitando ser ajustado para forçar a qualidade e padronização do projeto.
+
+```
+"eslintConfig": {
+  "extends": [
+    ...
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    ...
+    "prettier"
+  ],
+  "rules": {
+    ...
+    "prettier/prettier": "error"
+  }
+},
+```
+
+## Mais informações
+
+Você pode obter mais informações sobre documentações nos links abaixo:
+
+- [React (Documentação)](https://reactjs.org/).
+- [Create React App (Documentação)](https://facebook.github.io/create-react-app/docs/getting-started).
