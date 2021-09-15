@@ -1,11 +1,13 @@
 import { AxiosResponse } from 'axios';
 import { api } from 'src/api/';
 
-type PostResponse = {
-  data: {
-    wealthSummary_by_pk: WealthType;
-  };
-};
+interface Data {
+  wealthSummary_by_pk: WealthType;
+}
+
+interface PostResponse {
+  data: Data;
+}
 
 export const wealthService = {
   post: (id: string | number): Promise<AxiosResponse<PostResponse>> =>
