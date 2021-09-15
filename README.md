@@ -18,6 +18,13 @@ Este projeto foi criado utilizando-se [Create React App](https://github.com/face
 
 O projeto utiliza o gerenciador de pacotes `npm` por padrão. Mas, se for de preferência da equipe, pode ser utilizado o `yarn` em ambiente de desenvolvimento.
 
+## Variáveis de ambiente
+
+No momento, essas são as variáveis de ambiente utilizadas pelo sistema. Para utilizá-las, basta criar um arquivo `.env` na raíz do projeto. O mesmo será ignorado pelo controle de versão.
+
+    REACT_APP_API_URL=          # Url de integração com a API
+    REACT_APP_REQUEST_TOKEN=    # Token da requisicão ao graphQl
+
 ### `Ambiente de Desenvolvimento`
 
 Para subir o servidor e rodar a aplicação em ambiente local, utilize o comando:
