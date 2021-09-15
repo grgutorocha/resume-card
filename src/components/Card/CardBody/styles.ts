@@ -3,9 +3,5 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  background-color: #e8ebf6;
-  padding: 16px;
+  padding: 18px 24px 26px 24px;
 `;
