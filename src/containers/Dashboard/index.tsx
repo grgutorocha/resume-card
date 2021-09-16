@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import Card, { CardTitle, CardHeader, CardBody, CardFooter } from 'src/components/Card';
 import PrincipalInfo from 'src/components/PrincipalInfo';
@@ -8,35 +8,38 @@ import { Icon } from 'src/components/Icon';
 import SpacerVertical from 'src/components/SpacerVertical';
 import Loader from 'src/components/Loader';
 import { helpers } from 'src/utils/helpers';
-
-import { Container } from './styles';
 import { wealthService } from 'src/api/services/wealth';
+import { constants } from 'src/utils/constants';
+
+import { useAppSelector, useAppDispatch } from 'src/store/hooks';
+import { isRequesting, requestSucces, requestError } from 'src/store/slices/wealth';
+
+import { Container, ErrorMessage } from './styles';
+
+const { MESSAGE } = constants;
 
 const Dashboard = () => {
-  const [wealth, setWealth] = useState<WealthType>({});
-  const [loading, setLoading] = useState(false);
-
-  const cdi = useCallback((value: number) => {
-    return `${helpers.decimal(value, { maximumFractionDigits: 2 })}%`;
-  }, []);
-
-  const profitability = useCallback((value: number) => {
-    return `${helpers.decimal(value, { maximumFractionDigits: 3 })}%`;
-  }, []);
+  const {
+    user,
+    wealth: { requesting, error, wealth },
+  } = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
 
   const updateResume = useCallback(async () => {
-    setLoading(true);
+    dispatch(isRequesting());
 
     try {
-      const { data } = await wealthService.post(2);
+      const { data } = await wealthService.post(user.id);
 
-      setWealth(data.data.wealthSummary_by_pk);
+      if (data.data.wealthSummary_by_pk) {
+        dispatch(requestSucces(data.data.wealthSummary_by_pk));
+      } else {
+        dispatch(requestError(MESSAGE.NO_DATA));
+      }
     } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
+      dispatch(requestError(MESSAGE.REQUEST_ERROR));
     }
-  }, []);
+  }, [dispatch, user.id]);
 
   useEffect(() => {
     updateResume();
@@ -47,12 +50,14 @@ const Dashboard = () => {
       <Card>
         <CardHeader>
           <CardTitle>Seu resumo</CardTitle>
-          <Icon.More>Opções</Icon.More>
+          <Icon.More />
         </CardHeader>
         <CardBody>
-          {loading ? (
-            <Loader />
-          ) : (
+          {Boolean(requesting) && <Loader />}
+
+          {Boolean(!requesting && error) && <ErrorMessage>{error}</ErrorMessage>}
+
+          {Boolean(!requesting && !error) && (
             <>
               {wealth?.total && (
                 <>
@@ -63,14 +68,20 @@ const Dashboard = () => {
 
               {wealth?.profitability && (
                 <>
-                  <SecondaryInfo label="Rentabilidade/mês" description={profitability(wealth.profitability)} />
+                  <SecondaryInfo
+                    label="Rentabilidade/mês"
+                    description={`${helpers.decimal(wealth.profitability, { maximumFractionDigits: 3 })}%`}
+                  />
                   <SpacerVertical space="12" />
                 </>
               )}
 
               {wealth?.cdi && (
                 <>
-                  <SecondaryInfo label="CDI" description={cdi(wealth.cdi)} />
+                  <SecondaryInfo
+                    label="CDI"
+                    description={`${helpers.decimal(wealth.cdi, { maximumFractionDigits: 2 })}%`}
+                  />
                   <SpacerVertical space="12" />
                 </>
               )}

@@ -9,3 +9,7 @@ export const Container = styled.div`
   background-color: #e8ebf6;
   padding: 16px;
 `;
+
+export const ErrorMessage = styled.div`
+  text-align: center;
+`;
