@@ -4,8 +4,8 @@ export interface UserState {
   id: number;
 }
 
-const initialState: UserState = {
-  id: 2,
+export const initialState: UserState = {
+  id: 6,
 };
 
 export const userSlice = createSlice({
@@ -14,7 +14,7 @@ export const userSlice = createSlice({
   reducers: {
     updateUserId: (state, action: PayloadAction<number>) => {
       state.id = action.payload;
-    }
+    },
   },
 });
 

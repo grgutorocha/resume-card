@@ -1,10 +1,6 @@
-import userReducer, { UserState, updateUserId } from './user';
+import userReducer, { updateUserId, initialState } from './user';
 
 describe('user Reducer', () => {
-  const initialState: UserState = {
-    id: 2,
-  };
-
   it('should handle initial state', () => {
     expect(userReducer(undefined, { type: 'unknown' })).toEqual(initialState);
   });
