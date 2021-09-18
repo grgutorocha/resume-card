@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 import { api } from 'src/api/';
 
 interface Data {
-  wealthSummary_by_pk: WealthType;
+  wealthSummary_by_pk: WealthType | null;
 }
 
 interface PostResponse {

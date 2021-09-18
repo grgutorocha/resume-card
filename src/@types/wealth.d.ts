@@ -4,4 +4,5 @@ type WealthType = {
   profitability?: number;
   total?: number;
   hasHistory?: boolean;
+  id?: number;
 };

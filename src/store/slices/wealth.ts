@@ -7,7 +7,7 @@ import { AppDispatch, AppThunk } from '..';
 
 const { MESSAGE } = constants;
 
-interface WealthState {
+export interface WealthState {
   requesting: boolean;
   error: string | undefined;
   wealth: WealthType;

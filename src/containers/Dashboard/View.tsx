@@ -11,7 +11,7 @@ import { helpers } from 'src/utils/helpers';
 
 import { Container, ErrorMessage } from './styles';
 
-interface IViewProps {
+export interface IViewProps {
   requesting: boolean;
   error: string | undefined;
   wealth: WealthType;
