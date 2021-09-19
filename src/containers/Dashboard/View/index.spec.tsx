@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import View, { IViewProps } from './View';
+import View, { IViewProps } from '.';
 
 const props: IViewProps = {
   requesting: false,

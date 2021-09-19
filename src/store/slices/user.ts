@@ -5,7 +5,7 @@ export interface UserState {
 }
 
 export const initialState: UserState = {
-  id: 6,
+  id: Number(process.env.REACT_APP_USER_ID) || 0,
 };
 
 export const userSlice = createSlice({

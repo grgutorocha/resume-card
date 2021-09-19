@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+import { useAppDispatch, useAppSelector } from 'src/store';
 import { updateWealth } from 'src/store/slices/wealth';
 
 const useController = () => {

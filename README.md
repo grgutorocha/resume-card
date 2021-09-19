@@ -24,6 +24,7 @@ No momento, essas são as variáveis de ambiente utilizadas pelo sistema. Para u
 
     REACT_APP_API_URL=          # Url de integração com a API
     REACT_APP_REQUEST_TOKEN=    # Token da requisicão ao graphQl
+    REACT_APP_USER_ID=          # Id do usuário logado para simulação
 
 ### `Ambiente de Desenvolvimento`
 
